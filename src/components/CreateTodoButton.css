@@ -1,0 +1,12 @@
+.CreateTodoButton{
+	z-index: 1 !important;
+    cursor: pointer;
+    font-size: 4rem;
+    color: rgb(34, 170, 175);
+    transition: transform .5s ease-in-out;
+}
+
+.CreateTodoButton:hover{
+    transform: rotate(360deg);
+    color: rgb(152, 167, 194) !important;
+}

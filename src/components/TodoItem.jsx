@@ -1,7 +1,8 @@
 
 import React from "react";
 import "../css/TodoItem.css";
-
+import { FaTrashAlt} from 'react-icons/fa'
+import { CgCheckR} from 'react-icons/cg'
 
 function TodoItem(props) {
 
@@ -11,7 +12,7 @@ function TodoItem(props) {
         className={`Icon Icon-check ${props.completed && "Icon-check--active"}`}
         onClick={props.onComplete}
       >
-        √
+        <CgCheckR />
       </span>
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
@@ -20,7 +21,7 @@ function TodoItem(props) {
       className="Icon Icon-delete"
       onClick={props.onDelete}
       >
-        X
+        <FaTrashAlt />
       </span>
 
     </li>

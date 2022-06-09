@@ -11,9 +11,16 @@ function TodoProvider(props) {
         error
       } = useLocalStorage('item_V1', []);
      
+      const [openModal, setOpenModal] = React.useState(false)
+
+
       //Valores de busque se mandan mediante estado para que lo cache itemearch 
       const [searchValue, setSearchValue] = React.useState('');
     
+      //Se filtra la informacion de cuantos tienen el status de completed y cuantos hay en total  
+      const completedItem = todos.filter(todo => todo.completed).length;
+      const totalItem = todos.length;
+
       //Se declara searchedItem como un array
       let searchedItem = [];
     
@@ -30,15 +37,22 @@ function TodoProvider(props) {
         })
       }
     
-      //Se filtra la informacion de cuantos tienen el status de completed y cuantos hay en total  
-      const completeditem = todos.filter(todo => todo.completed).length;
-      const totalItem = todos.length;
+
     
       //La funcion recibe un texto, en el que evaluara que texto es, luego se crea una lista nueva y despues se cambia la propiedad de completed a true, luego se guarda en la lista anterior
       const completeTodo = (text) => {
         const todoIndex = todos.findIndex(todo => todo.text === text);
         const newitem = [...todos];
         newitem[todoIndex].completed = true;
+        saveTodos(newitem);
+      }
+
+      const addTodo = (text) => {
+        const newitem = [...todos];
+        newitem.push({
+          completed: false,
+          text
+        })
         saveTodos(newitem);
       }
     
@@ -66,12 +80,15 @@ function TodoProvider(props) {
             loading,
             error,
             totalItem,
-            completeditem,
+            completedItem,
             searchValue,
             setSearchValue,
             searchedItem,
             completeTodo,
             deleteTodo,
+            openModal,
+            setOpenModal,
+            addTodo,
         }}>
             {props.children}
         </TodoContext.Provider>

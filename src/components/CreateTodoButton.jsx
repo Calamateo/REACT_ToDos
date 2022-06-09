@@ -1,52 +1,24 @@
 import React from 'react'
+import { TodoContext } from '../TodoContext/TodoContext';
+import './CreateTodoButton.css';
+import {IoAddCircleSharp} from 'react-icons/io5'
 
 function CreateTodoButton() {
 
-  const onclickButton = () => {
-    console.log('click');
-    alert('click');
-  }
+  const {openModal, setOpenModal} =  React.useContext(TodoContext)
 
-  // var myHeaders = new Headers();
-  // myHeaders.append("Content-Type", "application/json", "Access-Control-Allow-Origin");
-
-  //   const [usuarios, setUsuarios] = React.useState([])
-
-  //   React.useEffect(() => {
-  //       fetchData()
-  //   }, [])
-
-  //   const fetchData = async () => {
-  //       const data = await fetch('http://127.0.0.1:8000/OmniClass23/')
-  //       const users = await data.json()
-  //       // console.log(users)
-        
-  //       await setUsuarios(users.results)
-  //       console.table(usuarios)
-        
-  //     }
-
-      
+  // const onclickButton = () => {
+  //   setOpenModal(true);
+  // }
 
   return (
-    <div className="text-center py-5">
-        <button
-          className='btn btn-lg btn-primary'
-          onClick={() => onclickButton()}
+    <div className="text-center py-5 ">
+        <span
+          className='CreateTodoButton'
+          onClick={() => setOpenModal(!openModal)}
         >
-          +
-        </button>
-
-{/* 
-      <ul>
-        {
-          usuarios.map(data => (
-            <li key={data.idOmc23}>
-              {data.Codigo} {data.descriSpa} 
-            </li>
-          ))
-        }
-      </ul> */}
+          <IoAddCircleSharp />
+        </span>
     </div>
   )
 }
